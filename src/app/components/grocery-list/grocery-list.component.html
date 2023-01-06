@@ -1,0 +1,29 @@
+<div class="container">
+    <button routerLink="" routerLinkActive="active"><i class="material-symbols-outlined">home_pin</i></button>
+    <h2>Please enter an item</h2>
+    <form class="form" id="form">
+        <div class="form-control">
+            <input type="text" id="new" #box placeholder="Add new item" [(ngModel)]="newItem" [ngModelOptions]="{standalone: true}">
+        </div>
+        <button (click)="saveItem()" class="submit-btn" type="submit">Add<i class="material-symbols-outlined">add_circle</i></button>
+    </form>
+
+    <ul class="item" *ngFor="let item of items;let i = index;">
+            <div class="{{ (!item.done)?'done':'' }}" (click)="done(i)" id="item-text">{{ item.name }}</div>
+            <div class="quantity">{{ item.quantity }}kg
+               <!-- <select name="select" id="select">
+                    <option value="kg">kg</option>
+                    <option value="g">g</option>
+                    <option value="l">l</option>
+                    <option value="ml">ml</option>
+                    <option value="item">item</option>
+                </select> -->
+            </div>
+            <div class="price">{{ item.price }}$</div>
+            
+            <div class="control-buttons">
+                <button class="edit-button"><i routerLink="/edit" routerLinkActive="active" class="material-symbols-outlined">edit_note</i></button>
+                <button class="delete-button" (click)="remove(i)"><i class="material-symbols-outlined">delete</i></button>
+            </div>
+    </ul>
+</div>

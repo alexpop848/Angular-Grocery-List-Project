@@ -1,0 +1,53 @@
+.wrap{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+    gap: 50px;
+    font-size: 2rem;
+}
+
+.item-text{
+    font-size: 3rem;
+    border-bottom: 1px solid rgb(81, 81, 81);
+}
+
+.wrap-item{
+    display: flex;
+    gap: 20px;
+}
+
+input{
+    border-radius: 5px;
+    font-size: 2rem;
+}
+
+.price-input{
+    max-width: 100px;
+}
+
+#select{
+    font-size: 2rem;
+    border: none;
+}
+
+.ok{
+    background-color: #fff;
+    border:none;
+    cursor: pointer;
+}
+
+.material-symbols-outlined{
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.material-symbols-outlined:active{
+    scale: 1.2;
+    transition: 0.2s ease;
+}
+.material-symbols-outlined:hover{
+    color: rgb(90, 174, 62);
+    transition: 0.2s ease;
+}

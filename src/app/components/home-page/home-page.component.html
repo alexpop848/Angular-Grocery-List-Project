@@ -1,0 +1,11 @@
+<div class="container">
+    <div class="list">
+        <div class="form-control">
+            <input type="text" id="new" #box placeholder="Add new list" [(ngModel)]="newList" [ngModelOptions]="{standalone: true}">
+        </div>
+        <ul *ngFor="let list of lists;let i = index;">
+            <li class="{{ (!list.done)?'done':'' }}" (click)="done(i)" routerLink="/list" routerLinkActive="active">{{ list.name }}</li>
+        </ul>
+    </div>
+    <button (click)="saveList()" class="add-btn" type="submit"><i class="material-symbols-outlined">add_circle</i></button>
+</div>

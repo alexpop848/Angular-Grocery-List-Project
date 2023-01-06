@@ -1,0 +1,153 @@
+h2{
+    font-size: 1.8rem;
+    text-decoration: underline;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 450px;
+    height: auto;
+    gap: 10px;
+    padding: 20px 10px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    border: 1px #000 solid;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px rgb(82, 82, 82);
+}
+
+.form-control{
+    margin: 0 20px;
+    display: flex;
+}
+
+#new, .submit-btn{
+    height: 40px;
+    width: 400px;
+    font-size: 1.3rem;
+    border-radius: 5px;
+}
+
+.submit-btn{
+    margin-top: 30px;
+    height: 60px;
+    width: 300px;
+    background-color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 2px solid black;
+}
+
+.submit-btn:hover{
+    background-color: #000;
+    transition: 0.4s ease;
+    color: #fff;
+}
+
+.item{
+    width: 500px;
+    font-size: 1.5rem;
+    display: flex;
+    border-bottom: 1px solid rgb(83, 83, 83);
+    justify-content: space-around;
+    gap: 15px;
+    align-items: center;
+    height: 70px;
+}
+
+.item:hover .control-buttons{
+    visibility: visible;
+    transition: 0.4s ease;
+    transform: translateY(0px);
+}
+
+select{
+    border: none;
+}
+
+#item-text{
+    list-style-type: none;
+    display: flex;
+    flex: 1;
+}
+
+.done{
+    text-decoration: line-through;
+    opacity: 0.3;
+}
+
+.control-buttons{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    visibility: hidden;
+    transform: translateY(10px);
+    margin-left: 10px;
+}
+
+button{
+    background-color:rgba(197, 197, 197, 0) ;
+    border: none;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    cursor: pointer;
+}
+
+.edit-button:hover{
+    box-shadow: 0 4px 2px -3px gray;
+    transition: 0.2s ease-in;
+}
+.edit-button:active{
+    color: rgb(90, 174, 62);
+    transition: 0.1s ease;
+}
+.delete-button:active{
+    color: rgb(168, 0, 0);
+    transition: 0.1s ease;
+}
+.delete-button:hover{
+    box-shadow: 0 4px 2px -3px gray;
+    transition: 0.2s ease-in;
+}
+
+.material-symbols-outlined{
+    font-size: 1.6rem;
+}
+
+#select{
+    width: 60px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    text-align: center;
+    margin-left: -10px;
+}
+
+#price{
+    margin-left: 20px;
+    width: 60px;
+    display: flex;
+    font-size: 1.2rem;
+    border-radius: 4px;
+}
+
+.material-symbols-outlined{
+    font-size: 2rem;
+}
