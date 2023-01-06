@@ -2,7 +2,7 @@
 
 Project is under construction.
 
-Things implemented so far: <br>
+Implemented so far: <br>
 -user interface <br>
 -routing <br>
 -functions to let the user add or delete items <br>
