@@ -1,5 +1,12 @@
 # GroceryListProject
 
+Project is under construction.
+
+Things implemented so far:
+-user interface
+-routing
+-functions to let the user add and delete items
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
 
 ## Development server
