@@ -1,0 +1,30 @@
+<form (submit)="saveList()" class="container">
+    <div class="list">
+        <div class="form-control">
+            <input type="text" id="new" #box placeholder="Add new list" [(ngModel)]="newList" [ngModelOptions]="{standalone: true}">
+        </div>
+        <ul *ngFor="let list of groceryLists; let i = index;">
+            <div id="list-wrap" class="{{ (!list.done)?'done':'' }}" (click)="navigateToList(list.id)"  >
+                <li *ngIf="toggledItemId!==list.id">{{ list.name }}</li> 
+                <li  *ngIf="toggledItemId===list.id"><input (blur)="toggleListNameEdit(null)" (change)="editListName(list.id, $event)" (click)="$event.stopPropagation()" type="text"></li>
+                 
+            </div>
+            <div class="control-buttons">
+                <button><i (click)="toggleListNameEdit(list.id)"  class="material-symbols-outlined">edit_note</i></button>
+                <button  class="delete-button"><i (click)="removeList(list.id)" class="material-symbols-outlined">delete</i></button>
+            </div>
+        </ul>
+        <!--
+            <form (submit)="editListName()" >
+            <div *ngIf="!isShow" class="edit-menu">
+                <h5>List name:</h5>
+                <input type="text">
+                <button  type="submit">Click</button>
+            </div>
+        </form>
+        -->
+        
+        
+    </div>
+    <button class="add-btn" type="submit"><i id="circle" class="material-symbols-outlined">add_circle</i></button>
+</form>
