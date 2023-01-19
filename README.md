@@ -6,6 +6,7 @@ Implemented so far: <br>
 -user interface <br>
 -routing <br>
 -functions to let the user add or delete items <br>
+-functions to let the user add, delete and update lists <br>
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
 
