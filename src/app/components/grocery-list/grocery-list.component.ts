@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Item } from 'src/app/grocery';
 import { GroceryListServiceService } from 'src/app/services/grocery-list-service.service';
+import { GroceryList } from '../home-page/items-list';
 
 
 @Component({
@@ -10,16 +11,11 @@ import { GroceryListServiceService } from 'src/app/services/grocery-list-service
   styleUrls: ['./grocery-list.component.css']
 })
 export class GroceryListComponent implements OnInit {
-  // items: Item[] = [];
-   newItem: string;
-  // newItemId : number = 0;
+  items: Item[] = [];
+  newItem: string;
   id : string;
-  //items: Items[] = [
-  //  { name:'kiwi', quantity: 23, price: 50, done: true },
-  //  { name:'grapes', quantity: 3, price: 65, done: true },
-  //  { name:'milk', quantity: 1, price: 15, done: true },
-  //];
 
+  groceryList: GroceryList = new GroceryList("undefined");
 
   constructor(private groceryService: GroceryListServiceService,
               private route: ActivatedRoute,
@@ -28,13 +24,11 @@ export class GroceryListComponent implements OnInit {
    }
 
   ngOnInit() { 
-
-    this.id = this.route.snapshot.paramMap.get('id')  //////////////
-    console.log("ngOnInit")
-  }
-
-  get groceryList() {
-    return this.groceryService.getListbyId(this.id);
+    //iau din ruta id-ul listei
+    this.id = this.route.snapshot.paramMap.get('id')        // iau parametru din url
+    console.log("ngOnInit");
+    //aduc din service lista cu id-ul listei primit ca parametru
+    this.groceryList = this.groceryService.getListbyId(this.id);
   }
 
  saveItem() {

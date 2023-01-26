@@ -10,9 +10,6 @@ const routes: Routes = [
   { path:'edit/:listId/:itemId', component: ItemDetailsComponent }
 ];
 
-//De implementat list guard pentru grocery list si item details
-//Altfel go to 404 not found
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { GroceryList } from './items-list';
 import { GroceryListServiceService } from 'src/app/services/grocery-list-service.service';
 import { Router } from '@angular/router';
 
@@ -25,9 +24,23 @@ export class HomePageComponent  {
     return this.listService.getAllLists();
   }
 
+  // saveLocalLists(list:any){
+  //   let lists: any;
+  //   //Check if we already have a list in there
+  //   if(localStorage.getItem('lists') === null){
+  //     lists = [];
+  //   } else{
+  //     lists = JSON.parse(localStorage.getItem('lists'));
+  //   }
+  //   lists.push(list);
+  //   localStorage.setItem('lists', JSON.stringify(lists));
+  // }
+
   saveList() {
     this.listService.createList(this.newList);
+    // this.saveLocalLists(this.groceryLists);
     this.newList = '';
+    
    }
 
     done(id:string){
@@ -39,7 +52,7 @@ export class HomePageComponent  {
     this.toggledItemId = listId;
    }
 
-   editListName(listId: string, event: any) {
+   editListName(listId: string, event: any) {   //////////////
     const newName = event.target.value;
     this.listService.editList(listId, newName);
     console.log(listId, newName);

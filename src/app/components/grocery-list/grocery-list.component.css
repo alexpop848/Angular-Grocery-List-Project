@@ -19,7 +19,8 @@ form{
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 450px;
+    width: 80%;
+    max-width: 400px;
     height: auto;
     gap: 10px;
     padding: 20px 10px;
@@ -37,7 +38,7 @@ form{
 
 #new, .submit-btn{
     height: 40px;
-    width: 400px;
+    width: 100%;
     font-size: 1.3rem;
     border-radius: 5px;
 }
@@ -45,7 +46,7 @@ form{
 .submit-btn{
     margin-top: 30px;
     height: 60px;
-    width: 300px;
+    width: 40%;
     background-color: #fff;
     font-weight: 600;
     cursor: pointer;
@@ -63,7 +64,7 @@ form{
 }
 
 .item{
-    width: 500px;
+    width: 80%;
     font-size: 1.5rem;
     display: flex;
     border-bottom: 1px solid rgb(83, 83, 83);
@@ -92,6 +93,7 @@ select{
 .done{
     text-decoration: line-through;
     opacity: 0.3;
+    color: rgb(255, 7, 7);
 }
 
 .control-buttons{

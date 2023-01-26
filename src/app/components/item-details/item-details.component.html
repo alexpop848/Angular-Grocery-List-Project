@@ -1,21 +1,44 @@
-<div class="wrap">
-    <div class="item-text">grapes</div>
-    <div class="wrap-item">
-        <input class="name-input" type="text" placeholder="grapes" >
+<div *ngIf="editItem" class="wrap">
+  <div class="item-text">{{ item?.name }}</div>
+  <div class="wrap-item">
+    <input
+      class="name-input"
+      type="text"
+      placeholder=""
+      [(ngModel)]="editItem.name"
+    />
+    <div class="options">
         <div class="quantity">
-            100
-            <input class="quantity-input" type="text" placeholder="100">
-            <select name="select" id="select">
-                <option value="kg">kg</option>
-                <option value="g">g</option>
-                <option value="l">l</option>
-                <option value="ml">ml</option>
-                <option value="item">item</option>
-            </select> 
-        </div>
-        <div class="price">$14</div>
-        <input class="price-input" type="text" placeholder="$14">
-        <button class="ok" routerLink="/list" routerLinkActive="active"><i class="material-symbols-outlined" >check</i></button>
+            Quantity: {{ editItem?.quantity }}
+            <input
+              class="quantity-input"
+              type="text"
+              [(ngModel)]="editItem.quantity"
+              placeholder="100"
+            />
+            <select [(ngModel)]="editItem.option" name="select" id="select">
+              <option
+                *ngFor="let option of quantityOptions"
+                [value]="option"
+                [selected]="option === editItem.option"
+              >
+                {{ option }}
+              </option>
+            </select>
+          </div>
+          <div class="price">Price: {{ editItem.price }}
+            <input
+            class="price-input"
+            [(ngModel)]="editItem.price"
+            type="text"
+            placeholder="$0"
+          />
+          </div>
+          
     </div>
-    
+    <div class="line"></div>
+    <button class="ok" (click)="saveItemClick()" routerLinkActive="active">
+      <i class="material-symbols-outlined">check</i>
+    </button>
+  </div>
 </div>

@@ -7,6 +7,7 @@ export class Item{
         this.quantity = 1;
         this.price = 0;
         this.done = false;
+        this.option = "kg";
     }
 
     id: string;
@@ -14,5 +15,6 @@ export class Item{
     quantity: number;
     price: number;
     done: boolean;
+    option: string;
 }
 

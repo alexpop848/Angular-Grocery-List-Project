@@ -6,7 +6,7 @@ export class GroceryList{
         this.name = name;
         this.items =[];
         this.id = uuid();
-        this.done = false;
+        this.done = false;  
     }
 
     id: string;

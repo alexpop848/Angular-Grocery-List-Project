@@ -10,7 +10,7 @@
 
     <ul class="item" *ngFor="let item of groceryList.items; let i = index;">
             <div class="{{ (item.done)?'done':'' }}" (click)="done(item.id)" id="item-text">{{ item.name }}</div>
-            <div class="quantity">{{ item.quantity }}kg
+            <div class="quantity">{{ item.quantity }} 
                <!-- <select name="select" id="select">
                     <option value="kg">kg</option>
                     <option value="g">g</option>
@@ -19,7 +19,8 @@
                     <option value="item">item</option>
                 </select> -->
             </div>
-            <div class="price">{{ item.price }}$</div>
+            {{ item.option }}
+            <div class="price">{{ item.price }}</div>
             
             <div class="control-buttons">
                 <button class="edit-button"><i (click)="navigateToItem(item.id)" routerLinkActive="active" class="material-symbols-outlined">edit_note</i></button>
