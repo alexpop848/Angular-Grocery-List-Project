@@ -9,6 +9,14 @@ export class GroceryList{
         this.done = false;  
     }
 
+    static fromJSON(json: any): GroceryList{   
+        const list = new GroceryList(json.name);
+        list.id = json.id;
+        list.items = json.items;
+        list.done = json.done;
+        return list;
+    }
+
     id: string;
     name: string;
     done: boolean;

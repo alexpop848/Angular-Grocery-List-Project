@@ -1,32 +1,63 @@
 import { Injectable, OnInit } from '@angular/core';
 import { GroceryList } from '../components/home-page/items-list';
 import { Item } from '../grocery';
+import { initializeApp } from 'firebase/app';
+import {
+  getFirestore,
+  Firestore,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from '@angular/fire/firestore';
+import { collection, getDocs } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root',
 })
-export class GroceryListServiceService implements OnInit {
+export class GroceryListServiceService {
   groceryList: GroceryList[] = [];
   newList: string = '';
   item: string;
   name: any;
 
-  constructor() {}
-
-  ngOnInit(): void {
-
+  constructor(private firestore: Firestore) {
+    this.onInit();
   }
+
+  onInit(): void {
+    //creez o functie noua async pe care o apelam
+    (async () => {
+      const querySnapshot = await getDocs(collection(this.firestore, 'lists')); //toate documentele din firebase
+      const listFromFirebase = querySnapshot.docs.map((doc) => {
+        return GroceryList.fromJSON(doc.data());
+      });
+      this.groceryList = listFromFirebase;
+      querySnapshot.forEach((doc) => {
+        console.log(`${doc.id} => ${doc.data()}`);
+      });
+    })();
+    console.log('ng oninit');
+  }
+
+  db = getFirestore();
+
+  docRef = doc(this.db, 'lists', '1');
 
   getAllLists() {
     return [...this.groceryList]; //The spread operator returns all the elements of the array
   }
 
+  syncWithFirestore() {}
+
   createList(name: string | undefined) {
     if (!name?.length) return;
     let newList = new GroceryList(name);
     this.groceryList.push(newList);
+    addDoc(collection(this.firestore, 'lists'), { ...newList }).then(
+      console.log
+    );
     console.log(this.groceryList);
-   
   }
 
   editList(listId: string, name: string) {
@@ -36,6 +67,7 @@ export class GroceryListServiceService implements OnInit {
     }
     console.log(this.groceryList, listIndex);
   }
+
   toggleListDone(listId: string) {
     let listIndex = this.groceryList.findIndex((list) => list.id === listId);
     if (listIndex) {
@@ -48,6 +80,13 @@ export class GroceryListServiceService implements OnInit {
     if (listIndex !== -1) {
       this.groceryList.splice(listIndex, 1);
     }
+    deleteDoc(this.docRef)
+      .then(() => {
+        console.log('Entire Document has been deleted successfully.');
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   getListbyId(listId: string): GroceryList {
@@ -106,7 +145,4 @@ export class GroceryListServiceService implements OnInit {
     }
     return { ...item };
   }
-
-  
-
 }

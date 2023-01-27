@@ -5,7 +5,7 @@ export class Item{
         this.name = name;
         this.id = uuid();
         this.quantity = 1;
-        this.price = 0;
+        this.price = '$0';
         this.done = false;
         this.option = "kg";
     }
@@ -13,7 +13,7 @@ export class Item{
     id: string;
     name: string;
     quantity: number;
-    price: number;
+    price: string;
     done: boolean;
     option: string;
 }
