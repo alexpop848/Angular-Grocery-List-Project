@@ -2,10 +2,8 @@
 
 Demo video: https://www.youtube.com/watch?v=Z8M64Ett8XQ&ab_channel=Backpacker
 
-Project is under construction.
-
-Implemented so far: <br>
--user interface <br>
+Features implemented so far: <br>
+-responsive user interface <br>
 -routing <br>
 -functions to let the user add, delete and edit items <br>
 -functions to let the user add, delete and edit lists <br>
