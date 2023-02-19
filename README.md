@@ -2,13 +2,11 @@
 
 Demo video: https://www.youtube.com/watch?v=Z8M64Ett8XQ&ab_channel=Backpacker
 
-Project is under construction.
-
-Implemented so far: <br>
--user interface <br>
--routing <br>
--functions to let the user add, delete and edit items <br>
--functions to let the user add, delete and edit lists <br>
+Features implemented so far:
+-responsive user interface
+-routing
+-functions to let the user add, delete and edit items
+-functions to let the user add, delete and edit lists
 -added Firestore Cloud to the project in order to save the lists.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
