@@ -1,7 +1,7 @@
 import { v4 as uuid } from 'uuid';
 
 export class Item{
-    constructor(name: string) {
+    constructor(name: string) {   //We use the construct to initalize the "Item" properties with default values
         this.name = name;
         this.id = uuid();
         this.quantity = 1;

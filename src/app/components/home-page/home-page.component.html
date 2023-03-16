@@ -1,4 +1,6 @@
 <form (submit)="saveList()" class="container">
+  <button class="primary-btn" (click)="login()" *ngIf="(auth.isAuthenticated$ | async) == false">Log in</button>
+  <button class="primary-btn-logout" (click)="logout()" *ngIf="auth.isAuthenticated$ | async">Log out</button>
   <div class="list">
     <div class="form-control">
       <input
@@ -11,7 +13,7 @@
       />
     </div>
     <ul *ngFor="let list of groceryLists; let i = index">
-      <div
+      <div *ngIf="auth.user$ | async as user"
         id="list-wrap"
         class="{{ !list.done ? 'done' : '' }}"
         (click)="navigateToList(list.id)"

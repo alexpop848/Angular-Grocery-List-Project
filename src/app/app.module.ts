@@ -1,16 +1,13 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
+import { HttpClientModule } from '@angular/common/http';
+import { AuthModule } from '@auth0/auth0-angular';
 import { AppComponent } from './app.component';
 import { GroceryListComponent } from './components/grocery-list/grocery-list.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { ItemDetailsComponent } from './components/item-details/item-details.component';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
-import { provideFirestore,getFirestore } from '@angular/fire/firestore';
-import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
-
 
 @NgModule({
   declarations: [
@@ -24,13 +21,14 @@ import { AngularFireModule, FIREBASE_OPTIONS } from '@angular/fire/compat';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore()),
-    AngularFireModule.initializeApp(environment.firebase)
+    HttpClientModule,
+    AuthModule.forRoot({
+      domain: 'dev-ucc10n70hf7yuxe3.us.auth0.com',
+      clientId: 'RVjD3vxxAlJQg0RiURN3drAnzCJRPYy6',
+      redirect_uri: window.location.origin
+    })
   ],
-  providers: [
-    { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
-  ],
-  bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

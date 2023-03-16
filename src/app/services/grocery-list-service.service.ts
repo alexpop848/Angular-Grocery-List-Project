@@ -1,16 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { GroceryList } from '../components/home-page/items-list';
 import { Item } from '../grocery';
-import { initializeApp } from 'firebase/app';
-import {
-  getFirestore,
-  Firestore,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
-} from '@angular/fire/firestore';
-import { collection, getDocs } from '@angular/fire/firestore';
+import { AuthService } from '@auth0/auth0-angular';
 
 @Injectable({
   providedIn: 'root',
@@ -21,42 +12,37 @@ export class GroceryListServiceService {
   item: string;
   name: any;
 
-  constructor(private firestore: Firestore) {
-    this.onInit();
+  constructor(public auth: AuthService) {
+    this.loadLists();
+  }
+
+  //Implementing local storage
+  private loadLists(): void {
+    const lists = localStorage.getItem('groceryLists');
+    if (lists) {
+      this.groceryList = JSON.parse(lists);
+    }
   }
 
   onInit(): void {
-    //creez o functie noua async pe care o apelam
-    (async () => {
-      const querySnapshot = await getDocs(collection(this.firestore, 'lists')); //toate documentele din firebase
-      const listFromFirebase = querySnapshot.docs.map((doc) => {
-        return GroceryList.fromJSON(doc.data());
-      });
-      this.groceryList = listFromFirebase;
-      querySnapshot.forEach((doc) => {
-        console.log(`${doc.id} => ${doc.data()}`);
-      });
-    })();
     console.log('ng oninit');
   }
 
-  db = getFirestore();
-
-  docRef = doc(this.db, 'lists', '1');
+  private saveLists(): void {
+    //the method will save any object of 'groceryLists' to the storage
+    localStorage.setItem('groceryLists', JSON.stringify(this.groceryList));
+  }
 
   getAllLists() {
     return [...this.groceryList]; //The spread operator returns all the elements of the array
   }
 
-  syncWithFirestore() {}
-
   createList(name: string | undefined) {
     if (!name?.length) return;
     let newList = new GroceryList(name);
     this.groceryList.push(newList);
-    addDoc(collection(this.firestore, 'lists'), { ...newList }).then(
-      console.log
-    );
+
+    this.saveLists();
     console.log(this.groceryList);
   }
 
@@ -64,6 +50,7 @@ export class GroceryListServiceService {
     let listIndex = this.groceryList.findIndex((list) => list.id === listId);
     if (listIndex !== -1) {
       this.groceryList[listIndex].name = name;
+      this.saveLists();
     }
     console.log(this.groceryList, listIndex);
   }
@@ -72,6 +59,7 @@ export class GroceryListServiceService {
     let listIndex = this.groceryList.findIndex((list) => list.id === listId);
     if (listIndex) {
       this.groceryList[listIndex].done = !this.groceryList[listIndex].done;
+      this.saveLists();
     }
   }
 
@@ -79,14 +67,8 @@ export class GroceryListServiceService {
     let listIndex = this.groceryList.findIndex((list) => list.id === listId);
     if (listIndex !== -1) {
       this.groceryList.splice(listIndex, 1);
+      this.saveLists();
     }
-    deleteDoc(this.docRef)
-      .then(() => {
-        console.log('Entire Document has been deleted successfully.');
-      })
-      .catch((error) => {
-        console.log(error);
-      });
   }
 
   getListbyId(listId: string): GroceryList {
@@ -99,6 +81,7 @@ export class GroceryListServiceService {
     if (listIndex !== -1) {
       console.log(listIndex, this.groceryList[listIndex]);
       this.groceryList[listIndex].items.push(item);
+      this.saveLists();
     }
     this.groceryList = [...this.groceryList];
   }
@@ -120,6 +103,7 @@ export class GroceryListServiceService {
     item.quantity = editItem.quantity;
     item.option = editItem.option;
     item.price = editItem.price;
+    this.saveLists();
   }
 
   toggleListItem(listId: string, itemId: string) {
@@ -128,6 +112,7 @@ export class GroceryListServiceService {
     let item = currentList.items.find((item) => item.id === itemId);
     if (!item) return;
     item.done = !item.done;
+    this.saveLists();
   }
 
   deleteListItem(listId: string, itemId: string) {

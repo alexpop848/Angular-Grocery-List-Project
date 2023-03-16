@@ -8,33 +8,33 @@
       [(ngModel)]="editItem.name"
     />
     <div class="options">
-        <div class="quantity">
-            Quantity: {{ editItem?.quantity }}
-            <input
-              class="quantity-input"
-              type="text"
-              [(ngModel)]="editItem.quantity"
-              placeholder="100"
-            />
-            <select [(ngModel)]="editItem.option" name="select" id="select">
-              <option
-                *ngFor="let option of quantityOptions"
-                [value]="option"
-                [selected]="option === editItem.option"
-              >
-                {{ option }}
-              </option>
-            </select>
-          </div>
-          <div class="price">Price: {{ editItem.price }}
-            <input
-            class="price-input"
-            [(ngModel)]="editItem.price"
-            type="text"
-            placeholder="$0"
-          />
-          </div>
-          
+      <div class="quantity">
+        Quantity: {{ editItem?.quantity }}
+        <input
+          class="quantity-input"
+          type="text"
+          [(ngModel)]="editItem.quantity"
+          placeholder="100"
+        />
+        <select [(ngModel)]="editItem.option" name="select" id="select">
+          <option
+            *ngFor="let option of quantityOptions"
+            [value]="option"
+            [selected]="option === editItem.option"
+          >
+            {{ option }}
+          </option>
+        </select>
+      </div>
+      <div class="price">
+        Price: {{ editItem.price }}
+        <input
+          class="price-input"
+          [(ngModel)]="editItem.price"
+          type="text"
+          placeholder="$0"
+        />
+      </div>
     </div>
     <div class="line"></div>
     <button class="ok" (click)="saveItemClick()" routerLinkActive="active">
