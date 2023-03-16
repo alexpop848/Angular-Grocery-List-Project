@@ -7,7 +7,8 @@ Features implemented so far: <br>
 -routing <br>
 -functions to let the user add, delete and edit items <br>
 -functions to let the user add, delete and edit lists <br>
--added Firestore Cloud to the project in order to save the lists.
+-added local storage to the project in order to save the lists <br>
+-added Auth0 so that only logged in users can see the content 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.3.
 
